@@ -1,9 +1,9 @@
 # Build-LLM-from-scrartch
-从数据构造，预训练，微调，启动gradio服务推理一步步构建领域大模型
-
 本项目的几点描述：
-1、主要代码参考了 https://github.com/pengxiao-song/LaWGPT/tree/main 
-2、利用业务数据训练了一个基于领域数据的大模型MT，该模型能进行简单的业务问答，逻辑复杂prompt的效果不是很好，还在不断优化中。
+
+1、从数据构造，预训练，微调，启动gradio服务推理一步步构建领域大模型
+2、主要代码参考了 https://github.com/pengxiao-song/LaWGPT/tree/main 
+3、利用业务数据训练了一个基于领域数据的大模型MT，该模型能进行简单的业务问答，逻辑复杂prompt的效果不是很好，还在不断优化中。
 
 ## 预训练模型、数据准备
 
