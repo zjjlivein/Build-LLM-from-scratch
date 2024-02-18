@@ -4,7 +4,6 @@
 本项目的几点描述：
 1、主要代码参考了 https://github.com/pengxiao-song/LaWGPT/tree/main 
 2、利用业务数据训练了一个基于领域数据的大模型MT，该模型能进行简单的业务问答，逻辑复杂prompt的效果不是很好，还在不断优化中。
-3、
 
 ## 预训练模型、数据准备
 
@@ -27,16 +26,27 @@ law_template.json
 训练词表模型： 参考https://zhuanlan.zhihu.com/p/630696264?utm_id=0
 ```
 spm_train --input=1.txt --model_prefix=/*/LLM/LaWGPT/models/tokenizer/MT-tokenizer --vocab_size=4000 --character_coverage=0.9995 --model_type=bpe
-``
-input 原始数据集、model_prefix 模型输出路径
+```
 
-合并词表参考：tools/merge_vocab.py
+4、合并词表参考：tools/merge_vocab.py
 
 
 ### 预训练模型
-train.py 
+scripts/train.sh
 ### 精调模型
+scripts/finetune.sh
+### 推理
+参考 infer.py
+### 启动服务预测
+```
+python webui.py \
+    --load_8bit False \
+    --base_model '/*/huggingface/hub/models--minlik--chinese-llama-plus-7b-merged/snapshots/f349700f2d5537b6500c6d9838eff2479902dbdb/' \
+    --lora_weights './outputs/v5/checkpoint-24000' \
+    --prompt_template "no_template" \
+    --server_name "0.0.0.0" \
+    --share_gradio True
+```
 
-## 启动服务预测
 
 
