@@ -46,3 +46,4 @@ jobs:
           path_to_bun_executable: /home/paddle-1/.bun/bin/bun
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          BUN_INSTALL_REGISTRY: https://registry.npmmirror.com
