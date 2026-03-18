@@ -6,7 +6,7 @@ on:
 
 jobs:
   claude-review:
-    runs-on: test_paddle
+    runs-on: test_paddle_docker
     permissions:
       contents: read
       pull-requests: read
