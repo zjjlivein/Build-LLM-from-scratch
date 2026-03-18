@@ -19,6 +19,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Set PATH
+        run: |
+          export PATH=/home/paddle-1/.bun/bin:$PATH
+          bun --version
+
       - name: Run Claude Code Review
         id: claude-review
         uses: anthropics/claude-code-action@v1
@@ -29,3 +34,4 @@ jobs:
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          PATH: /home/paddle-1/.bun/bin:$PATH
