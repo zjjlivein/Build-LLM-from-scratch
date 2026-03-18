@@ -30,6 +30,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Set PATH
+        run: |
+          export PATH=/home/paddle-1/.bun/bin:$PATH
+          bun --version
+
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
@@ -40,3 +45,4 @@ jobs:
             actions: read
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          PATH: /home/paddle-1/.bun/bin:$PATH
