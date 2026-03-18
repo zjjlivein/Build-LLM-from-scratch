@@ -43,5 +43,6 @@ jobs:
           trigger_phrase: '@paddle'
           additional_permissions: |
             actions: read
+          path_to_bun_executable: ~/.bun/bin/bun
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
