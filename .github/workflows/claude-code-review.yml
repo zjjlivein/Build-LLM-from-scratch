@@ -23,6 +23,8 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "$HOME/.bun/bin" >> $GITHUB_PATH
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Run Claude Code Review
         id: claude-review
@@ -35,3 +37,4 @@ jobs:
           path_to_bun_executable: ~/.bun/bin/bun
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
