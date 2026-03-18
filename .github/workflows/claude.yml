@@ -30,10 +30,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set PATH
+      - name: Setup environment
         run: |
-          export PATH=/home/paddle-1/.bun/bin:$PATH
-          bun --version
+          export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+          echo "PATH=$PATH"
 
       - name: Run Claude Code
         id: claude
@@ -46,4 +46,3 @@ jobs:
           path_to_bun_executable: /home/paddle-1/.bun/bin/bun
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
-          PATH: /home/paddle-1/.bun/bin:$PATH
