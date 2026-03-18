@@ -48,3 +48,5 @@ jobs:
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           BUN_INSTALL_REGISTRY: https://registry.npmmirror.com
+          no_proxy: '*'
+          NO_PROXY: '*'
