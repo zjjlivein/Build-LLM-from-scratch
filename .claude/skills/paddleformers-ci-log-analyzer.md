@@ -91,6 +91,10 @@
 
 ## 输出规则
 
+### 输出结构
+
+按照以下结构进行输出：
+
 ### 单流水线输出（流水线链接作为输入）
 
 ```
@@ -105,7 +109,7 @@
 日志分析报告
 
 | 流水线名称 | 问题标签 | 修复建议 |
-|------------|----------|----------|
+|------------|------------|----------|
 ```
 
 ### 输出示例
@@ -141,7 +145,7 @@ pr 链接 帮忙我分析 CI 错误原因
 |------------|----------|----------|
 | Check Release PR | Develop PR 未合入 | 在描述里写上PR号，格式如下：`Merged： #3639` 出现蓝色链接 回车，会自动触发流水线，不要直接写链接。 |
 | Unittest GPU CI | 单测 Bug | 以下单测存在Bug: `DeepseekV3ModelTest.test_DeepseekV3_lm_head_model` |
-| Model Unittest GPU CI | Loss 存在 Diff | 1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop 2、查看是否是自身pr导致 |
+| Model Unittest GPU CI | Loss 存在 Diff | 1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop<br>2、 |
 | Fleet Model Test | 机器问题 | 显卡掉，建议QA关注 |
 ```
 
