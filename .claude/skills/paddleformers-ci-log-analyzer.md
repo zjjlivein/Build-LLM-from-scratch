@@ -35,8 +35,8 @@
 
 ### 第二步
 
-按照分析规则进行日志现象分析，进而确定问题标签以及修复建议。日志打印过于冗长时，可以截取关键日志现象进行分析，如从倒数200开始查看。
-用 grep 过滤关键字快速缩小范围，用 tail -n 直接看日志末尾部分. 
+- 按照分析规则进行日志现象分析，进而确定问题标签以及修复建议。日志打印过于冗长时，可以截取关键日志现象进行分析，如从倒数200开始查看。
+- 用 grep 过滤关键字快速缩小范围，用 tail -n 直接看日志末尾部分. 
 
 ---
 
@@ -93,7 +93,7 @@
 | 日志现象 | 问题标签 | 修复建议 |
 |----------|----------|----------|
 | `'[' 124 -eq 124 ']'`<br>`exit 124` | 124超时 | 1. 单测 `{}` 执行超过 4min，正常是 1min<br>2. 日志 hang 到单测 `{}`<br>3. 查看python 遗留进程，py-spy dump PID, 打印出堆栈 |
-| `E AssertionError` | 单测存在 Loss Diff | 以下单测存在 Loss Diff:1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop<br>2、查看是否是自身pr 导致，建议更新base |
+| `AssertionError` | 单测存在 Loss Diff | 以下单测存在 Loss Diff:1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop<br>2、查看是否是自身pr 导致，建议更新base |
 | ``ret_code = 1` | 单测存在Bug | 以下单测存在Bug:<br>import paddlefleet.qwen3vl` 报错 |
 | `create_and_check_model_generate`<br>推结果不一致 | 单测存在Bug | 以下单测存在Bug:<br>`scripts/regression/test_sft_tiny-random-glm4moe.py`<br>`SFT_FULL_TP_PP_EXCEPTED_RESULT` 生成结果不一致，建议更新base |
 | 日志明显下载时间增加，网络慢 | 依赖下载问题 | 清华源下载 `use_triton_in_paddle` 慢，建议切换阿里源或者其他 |
@@ -105,7 +105,7 @@
 
 | 日志现象 | 问题标签 | 修复建议 |
 |----------|----------|----------|
-| `E AssertionError` | 单测存在 Loss Diff | 以下单测存在 Loss Diff:1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop<br>2、查看是否是自身pr 导致，建议更新base |
+| `AssertionError` | 单测存在 Loss Diff | 以下单测存在 Loss Diff:1、查看最近3天diff 脚本是否有更新，如果有更新建议merge develop<br>2、查看是否是自身pr 导致，建议更新base |
 | ``ret_code = 1` | 单测存在Bug | 以下单测存在Bug:<br>import paddlefleet.qwen3vl` 报错 |
 | `create_and_check_model_generate`<br>推结果不一致 | 单测存在Bug | 以下单测存在Bug:<br>`scripts/regression/test_sft_tiny-random-glm4moe.py`<br>`SFT_FULL_TP_PP_EXCEPTED_RESULT` 生成结果不一致，建议更新base |
 | 日志明显下载时间增加，网络慢 | 依赖下载问题 | 清华源下载 `use_triton_in_paddle` 慢，建议切换阿里源或者其他 |
@@ -150,7 +150,7 @@ pr 链接 帮忙我分析 CI 错误原因
 ```
 
 **输出：**
-```
+
 日志分析报告
 
 | 流水线名称 | 问题标签 | 修复建议 |
@@ -159,7 +159,6 @@ pr 链接 帮忙我分析 CI 错误原因
 | Unittest GPU C | 单测 Bug | 以下单测存在Bug: `DeepseekV3ModelTest.test_DeepseekV3_lm_head_model` |
 | Fleet Model Test | 机器问题 | 显卡掉，建议QA关注 |
 
-```
 
 ### 注意事项
 
