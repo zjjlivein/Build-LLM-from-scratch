@@ -30,7 +30,7 @@
 ## 分析步骤
 
 ### 第一步
-检查 流水线 Github Action 是否设置了 Required。
+检查 PR 是否设置了 Required。
 - **如果没有设置**
   - 问题标签：没有设置 Required
   - 修复建议：没有设置 Required，流水线建设中，可以不用关注。
@@ -41,7 +41,8 @@
 
 ### 第三步
 按照分析规则进行日志现象分析，进而确定问题标签以及修复建议。日志打印过于冗长时，可以截取关键日志现象进行分析，如从倒数200开始查看。
-用 grep 过滤关键字快速缩小范围，用 tail -n 直接看日志末尾部分. 
+用 grep 过滤关键字快速缩小范围，用 tail -n 直接看日志末尾部分。
+
 ---
 
 ## 各流水线分析规则
@@ -154,17 +155,14 @@ pr 链接 帮忙我分析 CI 错误原因
 ```
 
 **输出：**
-```
+
 日志分析报告
 
 | 流水线名称 | 问题标签 | 修复建议 |
 |------------|----------|----------|
-| Check Release PR | Develop PR 未合入 | 在描述里写上PR号，格式如下：`Merged： #3639` 出现蓝色链接 回车，会自动触发流水线，不要直接写链接。  |
-| Unittest GPU C | 单测 Bug | 以下单测存在Bug: `DeepseekV3ModelTest.test_DeepseekV3_lm_head_model` |
+| Check Release PR | Develop PR 未合入 | 在描述里写上PR号，格式如下：`Merged： #3639` 出现蓝色链接 回车，会自动触发流水线，不要直接写链接。 |
+| Unittest GPU CI | 单测 Bug | 以下单测存在Bug: `DeepseekV3ModelTest.test_DeepseekV3_lm_head_model` |
 | Fleet Model Test | 机器问题 | 显卡掉，建议QA关注 |
-
-```
-```
 ```
 
 ### 注意事项
