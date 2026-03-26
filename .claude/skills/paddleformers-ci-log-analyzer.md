@@ -30,18 +30,14 @@
 ## 分析步骤
 
 ### 第一步
-检查 流水线 Github Action 是否设置了 Required。
-- **如果没有设置**
-  - 问题标签：没有设置 Required
-  - 修复建议：没有设置 Required，流水线建设中，可以不用关注。
-
-### 第二步
 - 如果用户提了具体的流水线名称，则按照对应流水线的分析规则进行分析。
 - 如果没有提，则把 PR 所有失败流水线日志进行分析汇总。
 
-### 第三步
+### 第二步
+
 按照分析规则进行日志现象分析，进而确定问题标签以及修复建议。日志打印过于冗长时，可以截取关键日志现象进行分析，如从倒数200开始查看。
 用 grep 过滤关键字快速缩小范围，用 tail -n 直接看日志末尾部分. 
+
 ---
 
 ## 各流水线分析规则
@@ -64,7 +60,7 @@
 
 | 日志现象 | 问题标签 | 修复建议 |
 |----------|----------|----------|
-| 124超时 | hang 到单测 `{}` | 1. 搜索关键词：`<Response [404]>`，如果有模型下载404<br>2. 新增的单测 case 是不是超过 1min<br>3. 有没有超过 1min 的执行 case（明显的读取，处理数据）<br>4. rerun 能不能稳定复现<br>5. rerun 之后稳定复现，试图增加 5min<br>6. rerun 之后不能复现，把报错日志截图返回<br>7. hang 查看python 遗留进程，py-syp PID, 打印出堆栈 |
+| 124超时 | hang 到单测 `{}` | 1. 日志搜索关键词：`<Response [404]>`，如果有模型下载404<br>2. 新增的单测 case 是不是超过 1min<br>3. 有没有超过 1min 的执行 case（明显的读取，处理数据）<br>4. rerun 能不能稳定复现<br>5. rerun 之后稳定复现，试图增加 5min<br>6. rerun 之后不能复现，把报错日志截图返回<br>7. hang 查看python 遗留进程，py-syp PID, 打印出堆栈 |
 | `ERROR tests/transformers/ernie4_5/test_modeling.py::`<br>`Ernie4_5CompatibilityTest::test_ernie4_5_converter`<br>`ERROR tests/transformers/ernie4_5/test_modeling.py::`<br>`Ernie4_5CompatibilityTest::test_ernie4_5_converter_from_local_dir`<br>`ERROR tests/mergekit/test_merge_model.py::`<br>`TestMergeModel::test_fuse_qkv_lora_merge_torch` | 单测存在Bug | 单测 `tests/transformers/ernie4_5/test_modeling.py::Ernie4_5CompatibilityTest::test_ernie4_5_converter` 存在Bug<br>报错的单测是测试 torch paddle 兼容性的，import torch 报错，你新增的 paddle Triton kernels 导出可能有问题。 |
 
 ---
@@ -163,8 +159,6 @@ pr 链接 帮忙我分析 CI 错误原因
 | Unittest GPU C | 单测 Bug | 以下单测存在Bug: `DeepseekV3ModelTest.test_DeepseekV3_lm_head_model` |
 | Fleet Model Test | 机器问题 | 显卡掉，建议QA关注 |
 
-```
-```
 ```
 
 ### 注意事项
